@@ -2,7 +2,7 @@
 
 The objective of this project is to collect, organize and mine information from scientific papers discussing the Zika virus. This is an open science project. This means everybody is welcome (and encouraged) to contribute however they can, using whichever skills they have. Your contributions to the project will be recorded as comments in the issue tracker and pull requests to our repo. We will use those to automatically build a list of participants to give credit to everyone that helped.
 
-# How to participate?
+## How to participate?
 
 You can choose to help with whatever you're comfortable with:
 * if you do not possess specialized scientific or engineering skills, you can help us find more material to add, or with many other tasks we may have (ask us!)
@@ -11,26 +11,26 @@ You can choose to help with whatever you're comfortable with:
 * if you are a software engineer or developer, help us to create or improve the code to support all of the above tasks
 * if you are a designer, help us to do all of this with more efficacy and beauty!
 * if you are a journalist, help us bring awareness to the project
-* if you are the Zika Virus, tell us how exactly do you work and how we can coexist in peace
+* if you are the Zika Virus, tell us how exactly do you work and how we can coexist in peace. :)
 
 
-# Minimum Viable Product (MVP)
+## Minimum Viable Product (MVP)
 
 Many of us can only work on this project in spare time, so we will take baby steps. The first MVP we are targetting is the collection and annotation of all scientific articles discussing Zika. First we will automatically extract entities and concepts mentioned in those articles. Subsequently, we will curate the extracted data to remove unrelated content and include missing entities/concepts.
 
 
-# Developer Quickstart
+## Developer Quickstart
 
 If you want to run/develop with us at this stage of the project, we assume you are running a Linux distribution (or at least MAC OS with add-ons). Let us know if that's not the case.
 
-```
+```bash
 make install  # to install the prereqs
 make all K=10 # to see the code running through the whole workflow with only 10 documents at first
 make download # to download all of the content (900 abstracts)
 make annotate # to run the workflow over the currently downloaded documents
 ```
 
-# Design Decisions
+## Design Decisions
 
 I describe below a few design decisions to help you understand how we got where we got, but we're also open to constructive criticism and suggestions on how we can improve our project.
 
