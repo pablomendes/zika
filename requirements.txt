@@ -1,0 +1,8 @@
+argparse
+traceback
+logging
+json
+requests
+Bio
+pyspotlight
+
