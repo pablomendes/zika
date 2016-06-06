@@ -4,3 +4,6 @@ simple
 spotlight-output
 errors.log
 *.pyc
+_site
+.sass-cache
+.jekyll-metadata

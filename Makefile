@@ -19,6 +19,10 @@ entities:$(SIMPLE_JSON_FILES:simple/%.json=spotlight-output/%.eset)
 spotlight-output/%.eset:spotlight-output/%.json
 	cat $< | jq -r ".[].URI" | sort -u > $@
 
+stats/entity_counts.csv:entities
+	echo "age,population" > $@
+	cat spotlight-output/*.eset | sort | grep -v "," | uniq -c | sort -nr | sed -E "s|[ ]+([0-9]+) http://dbpedia.org/resource/(.+)|\2,\1|" | head -10 >> $@
+
 #TODO patching depends on downloading, parsing, annotating and manually generated patch files to be applied in order
 patch:annotate
 
