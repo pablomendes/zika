@@ -14,6 +14,11 @@ parse:download
 # annotating depends on downloading, parsing and running annotation on every parsed file
 annotate:parse $(SIMPLE_JSON_FILES:simple/%.json=spotlight-output/%.json)
 
+entities:$(SIMPLE_JSON_FILES:simple/%.json=spotlight-output/%.eset)
+
+spotlight-output/%.eset:spotlight-output/%.json
+	cat $< | jq -r ".[].URI" | sort -u > $@
+
 #TODO patching depends on downloading, parsing, annotating and manually generated patch files to be applied in order
 patch:annotate
 
@@ -23,6 +28,8 @@ download:
 install:
 	pip install -r requirements.txt
 	mkdir -p orig simple spotlight-output
+	brew install jq
+	apt-get install jq
 
 spotlight-output/%.json:simple/%.json
 	python src/annotate.py $< $@
