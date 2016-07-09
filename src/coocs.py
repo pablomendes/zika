@@ -20,4 +20,5 @@ with open(input_filename,'r') as f_in, open(output_filename, 'w') as f_out:
             pairs.add("\t".join(pair))
     
     f_out.write("\n".join(pairs))
+    f_out.write("\n")
 

@@ -9,14 +9,17 @@ install:
 all: download parse annotate patch
 
 download:
-	python src/download_abstracts.py --retmax $(K)
+	python src/download_abstracts.py -q zika --retmax $(K)
+	python src/download_abstracts.py -q microcephaly --retmax $(K)
+	#python src/download_abstracts.py -q "aedes aegypti" --retmax $(K)
+	python src/download_abstracts.py -q pyriproxyfen --retmax $(K)
 
 # parsing depends on downloading (currently jointly executed)
 parse:download
 	# currently the parsing is done at download time
 
 # annotating depends on downloading, parsing and running annotation on every parsed file
-annotate:parse $(SIMPLE_JSON_FILES:simple/%.json=spotlight-output/%.json)
+annotate:$(SIMPLE_JSON_FILES:simple/%.json=spotlight-output/%.json)
 
 spotlight-output/%.json:simple/%.json
 	python src/annotate.py $< $@
@@ -36,13 +39,16 @@ stats/entity_counts.csv:entities
 	#TODO this is currently Mac-specific. #FIXME
 	cat spotlight-postproc/*.eset | sort | grep -v "," | uniq -c | sort -nr | sed -E "s|[ ]+([0-9]+) http://dbpedia.org/resource/(.+)|\2,\1|" | head -10 >> $@
 
-pairs:$(SIMPLE_JSON_FILES:simple/%.json=spotlight-postproc/%.pairs)
+coocs:$(SIMPLE_JSON_FILES:simple/%.json=spotlight-postproc/%.coocs)
 
-spotlight-postproc/%.pairs:spotlight-postproc/%.eset
+spotlight-postproc/%.coocs:spotlight-postproc/%.eset
 	python src/coocs.py $< $@
 
-stats/pair_counts.csv:pairs
-	cat spotlight-postproc/*.pairs | sort | uniq -c | sort -nr > $@
+stats/cooc_counts.csv:$(SIMPLE_JSON_FILES:simple/%.json=spotlight-postproc/%.coocs)
+	cat spotlight-postproc/*.coocs | sort | uniq -c | sort -nr > $@
+
+stats/cooc_counts.json:stats/cooc_counts.csv
+	python src/coocs2json.py $< $@
 
 clean:
 	mkdir -p bak
