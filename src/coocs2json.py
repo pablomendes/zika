@@ -8,7 +8,7 @@ logging.basicConfig(format='%(levelname)s:%(filename)s:%(message)s',filename='er
 
 input_filename = sys.argv[1]
 output_filename = sys.argv[2]
-topk = 100
+topk = 200
 
 def clean(s):
     return s.replace("http://dbpedia.org/resource/","")
