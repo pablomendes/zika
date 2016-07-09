@@ -18,6 +18,7 @@ with open(input_filename,'r') as f_in, open(output_filename, 'w') as f_out:
     links = list() 
     wspace = re.compile("[\s\t]+")
     k = 0
+    i = 0
     for line in file.readlines(f_in):
         k += 1
         if k==topk:
@@ -25,13 +26,17 @@ with open(input_filename,'r') as f_in, open(output_filename, 'w') as f_out:
         try:
             f = line.split()
             v,e1,e2 = f
-            nodes[e1] += int(v)
-            nodes[e2] += int(v)
-            links.append({"value": v, "source": clean(e1), "target": clean(e2)})
+            if e1 not in nodes:
+                nodes[e1]=i
+                i+=1
+            if e2 not in nodes:
+                nodes[e2]=i
+                i+=1
+            links.append({"value": v, "source": nodes[e1], "target": nodes[e2]})
         except ValueError:
             logging.error("Could not parse line: %s" % line)
         
     #TODO group by type? by how frequent? by "relevance" as specified manually by the community?
-    grouped_nodes = [ {"group": 1, "name": n} for n in nodes ]
+    grouped_nodes = [ { "group": 1, "name": clean(n) } for n in nodes ]
     f_out.write(json.dumps({"links": links, "nodes": grouped_nodes}))
 
