@@ -1,6 +1,6 @@
 # Zika Papers
 
-The objective of this project is to collect, organize and mine information from scientific papers discussing the Zika virus. This is an open science project. This means everybody is welcome (and encouraged) to contribute however they can, using whichever skills they have. Your contributions to the project will be recorded as comments in the issue tracker and pull requests to our repo. We will use those to automatically build a list of participants to give credit to everyone that helped.
+The objective of this project is to collect, organize and mine information from scientific papers discussing the Zika virus and potentially related literature. This is an open science project. This means everybody is welcome (and encouraged) to contribute however they can, using whichever skills they have. Your contributions to the project will be recorded and credit will be given. We will use comments in the issue tracker and pull requests to our repo to automatically build a list of participants to give credit to everyone that helped.
 
 ## How to participate?
 
@@ -21,7 +21,7 @@ Many of us can only work on this project in spare time, so we will take baby ste
 
 ## Developer Quickstart
 
-If you want to run/develop with us at this stage of the project, we assume you are running a Linux distribution (or at least MAC OS with add-ons). Let us know if that's not the case.
+If you want to run/develop with us at this stage of the project, we assume you are running a Linux distribution (or at least Mac OS with add-ons). Let us know if that's not the case.
 
 ```bash
 make install  # to install the prereqs
