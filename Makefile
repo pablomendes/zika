@@ -48,7 +48,7 @@ stats/cooc_counts.csv:$(SIMPLE_JSON_FILES:simple/%.json=spotlight-postproc/%.coo
 	cat spotlight-postproc/*.coocs | sort | uniq -c | sort -nr > $@
 
 stats/cooc_counts.json:stats/cooc_counts.csv
-	python src/coocs2json.py $< $@
+	python src/coocs2json.py $< $@ 200
 
 clean:
 	mkdir -p bak
